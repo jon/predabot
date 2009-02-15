@@ -1,0 +1,3 @@
+[submodule "pyroomba"]
+	path = pyroomba
+	url = git://github.com/jon/pyroomba.git
