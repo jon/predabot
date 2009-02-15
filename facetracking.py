@@ -1,9 +1,14 @@
 
 from opencv.cv import *
 from opencv.highgui import *
-
+from time import sleep
 
 capture = cvCreateCameraCapture(CV_CAP_ANY)
+
+if not capture:
+    print "No capture device!"
+    exit(1)
+
 face_cascade = cvLoadHaarClassifierCascade("face_cascade", cvSize(20, 20))
 body_cascade = None
 #body_cascade = cvLoadHaarClassifierCascade("upper_body_cascade", cvSize(22, 18))
@@ -23,7 +28,7 @@ def detect_and_draw(img):
     cvClearMemStorage(storage)
     
     if face_cascade:
-        faces = cvHaarDetectObjects(img, face_cascade, storage, 1.1, 2, CV_HAAR_DO_CANNY_PRUNING, cvSize(80, 80))
+        faces = cvHaarDetectObjects(img, face_cascade, storage, 1.1, 2, CV_HAAR_DO_CANNY_PRUNING, cvSize(100, 100))
     else:
         faces = []
 
@@ -52,7 +57,8 @@ if capture:
         frame = cvRetrieveFrame(capture)
         
         if not frame:
-            break
+            sleep(0.1)
+            continue
         
         if not frame_copy:
             frame_copy = cvCreateImage(cvSize(frame.width, frame.height), IPL_DEPTH_8U, frame.nChannels)
