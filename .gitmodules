@@ -1,3 +1,6 @@
 [submodule "pyroomba"]
 	path = pyroomba
 	url = git://github.com/jon/pyroomba.git
+[submodule "missile-command"]
+	path = missile-command
+	url = git://github.com/jon/missile-command.git
